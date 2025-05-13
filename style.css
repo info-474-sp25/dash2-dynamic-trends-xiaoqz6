@@ -1,137 +1,407 @@
-/* General Layout Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: Arial, sans-serif;
+    margin: 0;
     padding: 20px;
-    background-color: #f4f4f4;
+    background-color: #f8f8f8;
 }
 
-/* Vertical Container Layout */
 .vertical-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: 20px;
 }
 
-/* Heading and Item Section */
 .item {
-    margin-bottom: 20px;
-    width: 100%;
-    max-width: 960px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
-h1 {
-    font-size: 2rem;
-    margin-bottom: 10px;
+.chart-with-filters {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.chart-container {
+    flex: 3;
+    padding: 15px;
+    position: relative;
+}
+
+.filters-container {
+    flex: 1;
+    padding: 0;
+    min-width: 200px;
+    max-width: 250px;
+}
+
+.filter-group {
+    background-color: #f5f7fa;
+    border-radius: 5px;
+    padding: 15px;
+    height: 100%;
+}
+
+.filter-group h3 {
+    margin-top: 0;
+    color: #2c3e50;
+    font-size: 16px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.filter-item {
+    margin-bottom: 20px;
+}
+
+.filter-item p {
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #34495e;
+}
+
+h1, h2 {
     color: #333;
+    margin-top: 0;
 }
 
 h2 {
-    font-size: 1.5rem;
+    font-size: 18px;
     margin-bottom: 15px;
+}
+
+select {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    width: 100%;
+}
+
+svg {
+    display: block;
+    margin: 0 auto;
+}
+
+.tooltip {
+    position: absolute;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    pointer-events: none;
+    font-size: 14px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+    max-width: 300px;
+}
+
+.tooltip h4 {
+    margin: 0 0 5px 0;
+    font-size: 14px;
     color: #333;
 }
 
-p {
-    font-size: 1rem;
-    margin-bottom: 10px;
+.tooltip p {
+    margin: 3px 0;
 }
 
-strong {
-    font-weight: 700;
+/* Year Range Slider Improvements */
+.year-range-container {
+    margin-top: 10px;
 }
 
-a {
-    color: #3498db;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-/* Widget Section (Horizontal layout for widgets) */
-.horizontal-container {
+.year-range-values {
     display: flex;
     justify-content: space-between;
-    gap: 20px; /* Replaces margin-right for consistent spacing */
-    width: 100%;
-    max-width: 960px;
-    margin-bottom: 20px;
-    padding-top: 40px;
+    align-items: center;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 14px;
 }
 
-.horizontal-container .item {
+.year-range-values span:first-child,
+.year-range-values span:last-child {
+    font-weight: bold;
+    color: #2c3e50;
+    background-color: #f0f0f0;
+    padding: 4px 8px;
+    border-radius: 4px;
+    min-width: 40px;
+    display: inline-block;
+}
+
+.double-slider-container {
+    position: relative;
+    height: 30px;
+    margin-bottom: 15px;
+}
+
+.double-slider-track {
+    position: absolute;
+    width: 100%;
+    height: 6px;
+    background-color: #ddd;
+    border-radius: 3px;
+    top: 12px;
+}
+
+.double-slider-track-inner {
+    position: absolute;
+    height: 6px;
+    background-color: #3498db;
+    border-radius: 3px;
+}
+
+.double-slider {
+    position: absolute;
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 6px;
+    background: transparent;
+    pointer-events: none;
+    outline: none;
+    z-index: 10;
+    top: 12px;
+}
+
+.double-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #3498db;
+    border: 2px solid white;
+    cursor: pointer;
+    pointer-events: auto;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.double-slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #3498db;
+    border: 2px solid white;
+    cursor: pointer;
+    pointer-events: auto;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.double-slider:active::-webkit-slider-thumb {
+    background: #2980b9;
+    transform: scale(1.1);
+}
+
+.double-slider:active::-moz-range-thumb {
+    background: #2980b9;
+    transform: scale(1.1);
+}
+
+.year-range-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.small-button {
     flex: 1;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 6px 8px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #555;
 }
 
-/* Chart Container */
-.chart-container {
-    width: 100%;
-    max-width: 960px;
-    margin-bottom: 20px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.small-button:hover {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+.small-button:active {
+    background-color: #d0d0d0;
+    transform: translateY(1px);
+}
+
+#selectedYearRange {
+    text-align: center;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-top: 5px;
+    display: none; /* Hide this since we show the values directly in the slider */
+}
+
+.legend-item {
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.legend-item:hover {
+    opacity: 0.8;
+}
+
+.line-path {
+    fill: none;
+    stroke-width: 2.5;
+}
+
+.line-path:hover {
+    stroke-width: 4;
+}
+
+.data-circle {
+    stroke: white;
+    stroke-width: 1;
+}
+
+.data-circle:hover {
+    stroke-width: 2;
+    r: 6;
+}
+
+.axis-label {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.checkbox-group {
     display: flex;
     flex-direction: column;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.checkbox-item input[type="checkbox"] {
+    margin: 0;
+}
+
+.severity-filter {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 15px;
+    justify-content: center;
     align-items: center;
 }
 
-/* SVG Styling */
-.chart-container svg {
-    display: block;
-    margin: 0 auto;
-    width: 100%;
+.severity-filter p {
+    margin: 0;
+    font-weight: bold;
 }
 
-/* Axis label styling */
-.axis-label {
+.severity-filter .checkbox-item {
+    margin-right: 15px;
+}
+
+/* Colored legends for severity */
+#sev-FATAL + label {
+    color: #003f5c;
+}
+
+#sev-NON-FATAL + label {
+    color: #bc5090;
+}
+
+#sev-INCIDENT + label {
+    color: #ff6361;
+}
+
+#sev-UNAVAILABLE + label {
+    color: #ffa600;
+}
+
+/* Grid styling */
+.grid line {
+    stroke: #e0e0e0;
+    stroke-opacity: 0.7;
+    shape-rendering: crispEdges;
+}
+
+.grid path {
+    stroke-width: 0;
+}
+
+/* Custom colors for manufacturer checkboxes */
+#mfr-Boeing + label {
+    color: #e41a1c;
+}
+
+#mfr-McDonnell-Douglas + label {
+    color: #ff7f00;
+}
+
+#mfr-Airbus + label {
+    color: #377eb8;
+}
+
+#mfr-Embraer + label {
+    color: #4daf4a;
+}
+
+#mfr-Bombardier + label {
+    color: #7f7f00;
+}
+
+/* Insights styling */
+.insights {
+    margin-top: 30px;
+}
+
+.insights h4 {
+    margin-top: 0;
+    color: #2c3e50;
+    font-size: 14px;
+}
+
+.insights ul {
+    margin: 0;
+    padding-left: 20px;
     font-size: 12px;
-    fill: #666;
-    text-anchor: middle;
+}
+
+.insights li {
+    margin-bottom: 8px;
+    color: #555;
+}
+
+/* Bar chart styling */
+.bar {
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.bar:hover {
+    opacity: 0.8;
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
-    .item {
-        padding: 15px;
-    }
-
-    h1 {
-        font-size: 1.8rem;
-    }
-
-    h2 {
-        font-size: 1.25rem;
-    }
-
-    .horizontal-container {
+@media (max-width: 992px) {
+    .chart-with-filters {
         flex-direction: column;
-        align-items: center;
     }
-
-    .horizontal-container .item {
-        margin-bottom: 10px;
+    
+    .filters-container {
+        max-width: none;
     }
-
-    .horizontal-container .item:last-child {
-        margin-bottom: 0;
+    
+    .severity-filter {
+        flex-direction: column;
+        align-items: flex-start;
     }
 }
-
-/* CSS generated with assistance from ChatGPT and DeepSeek. */

@@ -1,46 +1,144 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard 2</title>
-    <script src="https://d3js.org/d3.v7.min.js"></script> <!-- Load D3 library -->
-    <link rel="stylesheet" href="style.css"> <!-- Connect to style.css for styles -->
-</head>
-<body class="vertical-container">
-    <!-- HEADER -->
-    <div class="item">
-        <h1>Your Project Title</h1>
-        <p><strong>Author(s):</strong> Your Name(s)</p>
-        <p><strong>Documentation:</strong> <a href="YOUR LINK HERE" target="_blank">Edit link in "index.html" on line 13. Give your document "Viewer" access to UW in share settings.</a></p>
+<!DOCTYPE html> 
+<html lang="en"> 
+<head>     
+    <meta charset="UTF-8">     
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">     
+    <title>Aircraft Incidents Dashboard</title>     
+    <script src="https://d3js.org/d3.v7.min.js"></script> <!-- Load D3 library -->     
+    <link rel="stylesheet" href="style.css"> <!-- Connect to style.css for styles --> 
+</head> 
+<body class="vertical-container">     
+    <!-- HEADER -->     
+    <div class="item">         
+        <h1>Aircraft Incidents Analysis (1995-2016)</h1>         
+        <p><strong>Author(s):</strong> Xiaoqian Zhou (group 6)</p>         
+        <p><strong>Documentation:</strong> <a href="https://www.ntsb.gov/Pages/AviationDownloadDataDictionary.aspx" target="_blank">Aircraft Incidents Data Dictionary</a></p>     
+    </div>          
+    
+    <!-- FIRST CHART WITH FILTERS -->     
+    <div class="item chart-with-filters">
+        <div class="chart-container">         
+            <h2>Aircraft Incidents Over Time by Manufacturer (1995-2016)</h2>         
+            <svg id="incidentsLineChart" width="700" height="400"></svg>
+        </div>
+        
+        <div class="filters-container">
+            <div class="filter-group">
+                <h3>Chart Filters</h3>
+                <div class="filter-item">
+                    <p><strong>Manufacturer Filter:</strong></p>
+                    <div class="checkbox-group" id="manufacturerCheckboxes">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="mfr-Boeing" value="Boeing" checked>
+                            <label for="mfr-Boeing">Boeing</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="mfr-McDonnell-Douglas" value="McDonnell Douglas" checked>
+                            <label for="mfr-McDonnell-Douglas">McDonnell Douglas</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="mfr-Airbus" value="Airbus" checked>
+                            <label for="mfr-Airbus">Airbus</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="mfr-Embraer" value="Embraer" checked>
+                            <label for="mfr-Embraer">Embraer</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="mfr-Bombardier" value="Bombardier" checked>
+                            <label for="mfr-Bombardier">Bombardier</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="filter-item">
+                    <p><strong>Year Range:</strong></p>
+                    <div class="year-range-container">
+                        <div class="year-range-values">
+                            <span id="yearMin">1995</span>
+                            <span>to</span>
+                            <span id="yearMax">2016</span>
+                        </div>
+                        <div class="double-slider-container">
+                            <div class="double-slider-track">
+                                <div class="double-slider-track-inner" id="sliderTrack"></div>
+                            </div>
+                            <input type="range" 
+                                id="yearSliderMin" 
+                                min="1995" 
+                                max="2016" 
+                                value="1995" 
+                                class="double-slider double-slider-min">
+                            <input type="range" 
+                                id="yearSliderMax" 
+                                min="1995" 
+                                max="2016" 
+                                value="2016" 
+                                class="double-slider double-slider-max">
+                        </div>
+                        <div class="year-range-buttons">
+                            <button id="yearRangeReset" class="small-button">Reset</button>
+                            <button id="yearRangeLast5" class="small-button">Last 5 Years</button>
+                            <button id="yearRangeFirst5" class="small-button">First 5 Years</button>
+                        </div>
+                    </div>
+                    <div id="selectedYearRange">1995 - 2016</div>
+                </div>
+            </div>
+        </div>
     </div>
     
-    <!-- INTERACTIVE WIDGETS -->
-    <div class="item horizontal-container">
-        <div class="item"><!-- Your widget 1 code goes here. -->
-            <!-- Widget 1 title -->
-            <!-- Widget 1 element -->
+    <!-- SECOND CHART WITH FILTERS -->
+    <div class="item chart-with-filters">
+        <div class="chart-container">         
+            <h2>Incidents by Flight Phase and Injury Severity</h2>         
+            <svg id="phaseBarchart" width="700" height="400"></svg>
+            
+            <div class="checkbox-group severity-filter" id="severityCheckboxes">
+                <p><strong>Injury Severity Filter:</strong></p>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="sev-FATAL" value="FATAL" checked>
+                    <label for="sev-FATAL">Fatal</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="sev-NON-FATAL" value="NON-FATAL" checked>
+                    <label for="sev-NON-FATAL">Non-Fatal</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="sev-INCIDENT" value="INCIDENT" checked>
+                    <label for="sev-INCIDENT">Incident</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="sev-UNAVAILABLE" value="UNAVAILABLE" checked>
+                    <label for="sev-UNAVAILABLE">Unavailable</label>
+                </div>
+            </div>
         </div>
-
-        <!-- DELETE THE FOLLOWING DIV IF YOU ONLY HAVE 1 WIDGET. -->
-        <div class="item"><!-- Your widget 2 code goes here. -->
-            <!-- Widget 2 title -->
-            <!-- Widget 2 element -->
+        
+        <div class="filters-container">
+            <div class="filter-group">
+                <h3>Chart Filters</h3>
+                <div class="filter-item">
+                    <p><strong>Flight Phase Filter:</strong></p>
+                    <select id="phaseFilter">
+                        <option value="all">All Flight Phases</option>
+                        <option value="TAKEOFF">Takeoff</option>
+                        <option value="LANDING">Landing</option>
+                        <option value="CRUISE">Cruise</option>
+                        <option value="APPROACH">Approach</option>
+                        <option value="STANDING">Standing</option>
+                        <option value="TAXI">Taxi</option>
+                        <option value="CLIMB">Climb</option>
+                        <option value="DESCENT">Descent</option>
+                        <option value="GO-AROUND">Go-Around</option>
+                        <option value="MANEUVERING">Maneuvering</option>
+                        <option value="OTHER">Other</option>
+                    </select>
+                </div>
+            </div>
         </div>
     </div>
-
-    <!-- CHART(S) -->
-    <div class="item chart-container">
-        <h2>[Chart 1 Title]</h2>
-        <svg id="lineChart1" width="900" height="400"></svg> <!-- If you change this ID name, you must change it in main.js too -->
-    </div>
-    <!-- DELETE THE FOLLOWING DIV IF YOU ONLY HAVE 1 CHART. -->
-    <div class="item chart-container">
-        <h2>[Chart 2 Title]</h2>
-        <svg id="lineChart2" width="900" height="400"></svg>
-    </div>
-    <script src="main.js"></script>
-</body>
+    
+    <script src="main.js"></script> 
+</body> 
 </html>
-
-<!-- Starter code polished with assistance from DeepSeek. -->
