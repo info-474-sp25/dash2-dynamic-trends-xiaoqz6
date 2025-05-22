@@ -35,19 +35,6 @@ This interactive dashboard visualizes aircraft incident patterns from 1995-2016,
 - **Flight Phase Filter**: Dropdown to focus on specific flight operations
 - **Injury Severity Filter**: Multi-select checkboxes for severity levels
 
-## Key Insights
-
-### Manufacturer Safety Trends
-- **Boeing** consistently shows the highest incident numbers, with a dramatic spike around 2010-2011 (reaching ~84 incidents) followed by a sharp decline by 2016
-- **McDonnell Douglas** demonstrates a noticeable peak around 1997 but maintains lower incident numbers after 2002, likely due to Boeing's acquisition
-- **Airbus, Embraer, and Bombardier** show relatively consistent but lower incident rates compared to Boeing
-
-### Flight Phase Risk Assessment
-- **Landing, Takeoff, and Taxi** phases account for the highest number of incidents overall
-- **Taxi incidents** show predominantly non-fatal outcomes
-- **Cruise phase** has fewer total incidents but displays a higher proportion of fatal outcomes
-- **Go-Around, Maneuvering, and Other** phases show significantly fewer incidents
-
 ## Data Source
 
 **Dataset**: U.S. Civil Aviation Accidents and Incidents (1995-2016)
