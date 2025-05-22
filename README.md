@@ -48,25 +48,6 @@ This interactive dashboard visualizes aircraft incident patterns from 1995-2016,
 - **Cruise phase** has fewer total incidents but displays a higher proportion of fatal outcomes
 - **Go-Around, Maneuvering, and Other** phases show significantly fewer incidents
 
-## Technical Implementation
-
-### Technologies Used
-- **D3.js v7**: For data visualization and interactive elements
-- **HTML5**: Structure and layout
-- **CSS3**: Styling and responsive design
-- **JavaScript**: Data processing and interactivity logic
-
-### Data Processing
-- Filters and aggregates 1,987 incident records from NTSB database
-- Real-time data transformation based on user filter selections
-- Cross-visualization state management for coordinated filtering
-
-### Interactive Features
-- **Enhanced Tooltips**: Show incident counts, percentages, and contextual information
-- **Cross-Chart Filtering**: Selections in one visualization affect the other
-- **Responsive Design**: Adapts to different screen sizes
-- **Performance Optimization**: Efficient data processing and smooth interactions
-
 ## Data Source
 
 **Dataset**: U.S. Civil Aviation Accidents and Incidents (1995-2016)
