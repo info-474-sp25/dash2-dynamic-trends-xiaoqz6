@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +13,7 @@
             <h1>Aircraft Incidents Dashboard</h1>
             <p><strong>Author(s):</strong> Xiaoqian Zhou (group 6)</p>         
             <p><strong>Documentation:</strong> <a href="https://docs.google.com/document/d/1GbU8fBbvH_XUfQWvkRSBlcAl2C3LCkvWCCdfem7PIiU/edit?usp=sharing" target="_blank">Aircraft Incidents Dataset Analysis</a></p>
-            <p>Interactive visualization of aircraft incidents from 1995 to 2016</p>   
+            <p>Interactive visualization of aircraft incidents data</p>   
         </header>
         
         <div class="item chart-with-filters">
@@ -31,27 +30,8 @@
                     
                     <div class="filter-item">
                         <p>Manufacturer</p>
-                        <div class="checkbox-group" id="manufacturerCheckboxes">
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="mfr-Boeing" value="Boeing" checked>
-                                <label for="mfr-Boeing">Boeing</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="mfr-McDonnell-Douglas" value="McDonnell Douglas" checked>
-                                <label for="mfr-McDonnell-Douglas">McDonnell Douglas</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="mfr-Airbus" value="Airbus" checked>
-                                <label for="mfr-Airbus">Airbus</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="mfr-Embraer" value="Embraer" checked>
-                                <label for="mfr-Embraer">Embraer</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="mfr-Bombardier" value="Bombardier" checked>
-                                <label for="mfr-Bombardier">Bombardier</label>
-                            </div>
+                        <div class="widget-buttons" id="manufacturerButtons">
+                            <!-- Manufacturer buttons will be populated dynamically -->
                         </div>
                     </div>
                     
@@ -70,10 +50,10 @@
                                 <input type="range" id="yearSliderMax" class="double-slider" min="1995" max="2016" value="2016">
                             </div>
                             
-                            <div class="year-range-buttons">
-                                <button id="yearRangeFirst5" class="small-button">First 5</button>
-                                <button id="yearRangeLast5" class="small-button">Last 5</button>
-                                <button id="yearRangeReset" class="small-button">All Years</button>
+                            <div class="widget-buttons year-range-buttons">
+                                <button id="yearRangeFirst5" class="widget-button">First 5</button>
+                                <button id="yearRangeLast5" class="widget-button">Last 5</button>
+                                <button id="yearRangeReset" class="widget-button">All Years</button>
                             </div>
                         </div>
                     </div>
@@ -95,62 +75,52 @@
                     
                     <div class="filter-item">
                         <p>Flight Phase</p>
-                        <select id="phaseFilter">
-                            <option value="all" selected>All Phases</option>
-                            <option value="TAKEOFF">Takeoff</option>
-                            <option value="LANDING">Landing</option>
-                            <option value="CRUISE">Cruise</option>
-                            <option value="APPROACH">Approach</option>
-                            <option value="STANDING">Standing</option>
-                            <option value="TAXI">Taxi</option>
-                            <option value="CLIMB">Climb</option>
-                            <option value="DESCENT">Descent</option>
-                            <option value="GO-AROUND">Go-Around</option>
-                            <option value="MANEUVERING">Maneuvering</option>
-                        </select>
+                        <div class="widget-buttons phase-buttons">
+                            <button id="phase-all-btn" class="widget-button active" data-phase="all">All Phases</button>
+                            <button id="phase-takeoff-btn" class="widget-button" data-phase="TAKEOFF">Takeoff</button>
+                            <button id="phase-landing-btn" class="widget-button" data-phase="LANDING">Landing</button>
+                            <button id="phase-cruise-btn" class="widget-button" data-phase="CRUISE">Cruise</button>
+                            <button id="phase-approach-btn" class="widget-button" data-phase="APPROACH">Approach</button>
+                            <button id="phase-standing-btn" class="widget-button" data-phase="STANDING">Standing</button>
+                        </div>
+                        <div class="widget-buttons phase-buttons">
+                            <button id="phase-taxi-btn" class="widget-button" data-phase="TAXI">Taxi</button>
+                            <button id="phase-climb-btn" class="widget-button" data-phase="CLIMB">Climb</button>
+                            <button id="phase-descent-btn" class="widget-button" data-phase="DESCENT">Descent</button>
+                            <button id="phase-goaround-btn" class="widget-button" data-phase="GO-AROUND">Go-Around</button>
+                            <button id="phase-maneuvering-btn" class="widget-button" data-phase="MANEUVERING">Maneuvering</button>
+                        </div>
                     </div>
                     
                     <div class="filter-item">
                         <p>Injury Severity</p>
-                        <div class="checkbox-group" id="severityCheckboxes">
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="sev-FATAL" value="FATAL" checked>
-                                <label for="sev-FATAL">Fatal</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="sev-NON-FATAL" value="NON-FATAL" checked>
-                                <label for="sev-NON-FATAL">Non-Fatal</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="sev-INCIDENT" value="INCIDENT" checked>
-                                <label for="sev-INCIDENT">Incident</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="sev-UNAVAILABLE" value="UNAVAILABLE" checked>
-                                <label for="sev-UNAVAILABLE">Unavailable</label>
-                            </div>
+                        <div class="widget-buttons">
+                            <button id="sev-FATAL-btn" class="widget-button active" data-severity="FATAL">Fatal</button>
+                            <button id="sev-NON-FATAL-btn" class="widget-button active" data-severity="NON-FATAL">Non-Fatal</button>
+                            <button id="sev-INCIDENT-btn" class="widget-button active" data-severity="INCIDENT">Incident</button>
+                            <button id="sev-UNAVAILABLE-btn" class="widget-button active" data-severity="UNAVAILABLE">Unavailable</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    
+        
         <!-- KEY INSIGHTS SECTION -->
-    <div class="item insights-section">
-        <h2>Key Insights</h2>
-        <div class="insights-grid">
-            <div class="insight-card">
-                <h3>Manufacturer Safety Trends</h3>
-                <p>Boeing has consistently experienced the highest number of incidents throughout 1995-2016, with a notable spike around 2010-2011. McDonnell Douglas shows a declining trend since 1997.</p>
-            </div>
-            <div class="insight-card">
-                <h3>Flight Phase Risk</h3>
-                <p>Taxi, Takeoff, and Landing phases account for the highest number of incidents overall. Taxi incidents have a high proportion of Non-Fatal outcomes, while Takeoff incidents show higher Incident-level severity.</p>
-            </div>
-            <div class="insight-card">
-                <h3>Severity by Phase</h3>
-                <p>While Cruise has fewer total incidents than Taxi, Takeoff, or Landing, it shows a higher proportion of Fatal incidents. Approach and Climb phases have similar severity distributions.</p>
+        <div class="item insights-section">
+            <h2>Key Insights</h2>
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <h3>Manufacturer Trends</h3>
+                    <p>Boeing and Airbus show the highest number of incidents, with Boeing having more incidents overall. This is partly due to their larger fleet sizes and market presence during the analyzed period.</p>
+                </div>
+                <div class="insight-card">
+                    <h3>Flight Phase Analysis</h3>
+                    <p>Landing, Takeoff, and Taxi phases show the highest incident rates. These are critical phases of flight with complex operations and higher risk factors.</p>
+                </div>
+                <div class="insight-card">
+                    <h3>Severity Distribution</h3>
+                    <p>Most incidents are classified as Non-Fatal or Incident level, with Fatal incidents being relatively rare. This reflects the aviation industry's focus on safety and incident prevention.</p>
+                </div>
             </div>
         </div>
     </div>
