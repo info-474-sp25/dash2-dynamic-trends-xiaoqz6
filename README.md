@@ -6,9 +6,9 @@ This interactive dashboard visualizes aircraft incident patterns from 1995-2016,
 
 **Live Dashboard:** [https://info-474-sp25.github.io/dash2-dynamic-trends-xiaoqz6/](https://info-474-sp25.github.io/dash2-dynamic-trends-xiaoqz6/)
 
-## Features
+### Features
 
-### Interactive Visualizations
+#### Interactive Visualizations
 
 1. **Aircraft Incidents Over Time by Manufacturer (Line Chart)**
    - Shows incident trends from 1995-2016 for top 5 aircraft manufacturers
@@ -22,20 +22,20 @@ This interactive dashboard visualizes aircraft incident patterns from 1995-2016,
    - Interactive tooltips showing phase-specific incident breakdowns
    - Cross-filtering with line chart visualization
 
-### Interactive Controls
+#### Interactive Controls
 
-#### First Chart Filters:
+##### First Chart Filters:
 - **Manufacturer Filter**: Multi-select checkboxes to show/hide specific manufacturers
 - **Year Range Slider**: Custom dual-handle slider with visual track and preset buttons
   - Reset to full range (1995-2016)
   - Quick selection: Last 5 Years (2012-2016)
   - Quick selection: First 5 Years (1995-1999)
 
-#### Second Chart Filters:
+##### Second Chart Filters:
 - **Flight Phase Filter**: Dropdown to focus on specific flight operations
 - **Injury Severity Filter**: Multi-select checkboxes for severity levels
 
-## Data Source
+### Data Source
 
 **Dataset**: U.S. Civil Aviation Accidents and Incidents (1995-2016)
 - **Source**: National Transportation Safety Board (NTSB) CAROL system
